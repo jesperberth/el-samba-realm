@@ -12,7 +12,7 @@
       [global]
        workgroup = {{ ad_server_domain_short }}
        server string = Samba Server Version %v
-       hosts allow = 127., {{ ip_allow }}
+       hosts allow = 127., {{ ip_allow }}.
        socket options = TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=131072 SO_SNDBUF=131072
        use sendfile = true
        min protocol = SMB2
