@@ -5,6 +5,13 @@
     name: "{{ required_pkgs }}"
     state: present
 
+- name: Prep | Removing existing config files
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /etc/samba/smb.conf
+
 - name: Configure | smb.conf
   blockinfile:
     path: /etc/samba/smb.conf
