@@ -15,6 +15,7 @@
 - name: Configure | smb.conf
   blockinfile:
     path: /etc/samba/smb.conf
+    create: yes
     block: |
       [global]
        workgroup = {{ ad_server_domain_short }}
