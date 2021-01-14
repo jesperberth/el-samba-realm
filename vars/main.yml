@@ -1,2 +1,14 @@
 ---
 # vars file for el-samba-realm
+required_pkgs:
+  - realmd
+  - sssd
+  - oddjob
+  - oddjob-mkhomedir
+  - adcli
+  - samba-common-tools
+  - krb5-workstation
+  - samba
+  - samba-client
+  - samba-winbind
+  - samba-winbind-clients

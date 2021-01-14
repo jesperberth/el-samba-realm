@@ -1,2 +1,11 @@
 ---
 # handlers file for el-samba-realm
+- name: reload firewall
+  systemd:
+    name: firewalld
+    state: reloaded
+
+- name: reload sssd
+  systemd:
+    name: sssd
+    state: restarted
