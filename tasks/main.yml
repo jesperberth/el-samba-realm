@@ -15,6 +15,16 @@
   debug:
     msg: "{{ winbind_status }}"
 
+# Begin block
+- name: Configure | Samba and Winbind
+  block:
+    - name: Prep | Test debug
+      debug:
+          msg: "Running Block"
+# Block Conditionals
+  when: winbind_status.rc != 0
+# End block
+
 - name: Prep | Removing existing config files
   file:
     path: "{{ item }}"
