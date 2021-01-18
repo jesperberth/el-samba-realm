@@ -5,6 +5,16 @@
     name: "{{ required_pkgs }}"
     state: present
 
+- name: Verify | Checking Winbind status
+  command: wbinfo -u
+  register: winbind_status
+  changed_when: false
+  ignore_errors: true
+
+- name: Debug winbind
+  debug:
+    msg: "winbind_status"
+
 - name: Prep | Removing existing config files
   file:
     path: "{{ item }}"
