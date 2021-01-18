@@ -13,7 +13,7 @@
 
 - name: Debug winbind
   debug:
-    msg: "winbind_status"
+    msg: "{{ winbind_status }}"
 
 - name: Prep | Removing existing config files
   file:
