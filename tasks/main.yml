@@ -71,6 +71,32 @@
         permanent: true
         state: enabled
       notify: reload firewall
+
+    - name: Winbind | Join {{ ansible_hostname }} to {{ ad_server_domain }}
+      command: /bin/bash -c "echo {{ ad_server_pass }} | net ads join -U {{ ad_server_user }} && sleep 10"
+      register: winbind_result
+      until: (winbind_result is changed) or
+             (winbind_result is succeeded)
+      retries: 10
+      no_log: True
+
+    - name: Configure | Enable Smb Service
+      systemd:
+        name: smb
+        state: started
+        enabled: yes
+
+    - name: Enable Nmb Service
+      systemd:
+        name: nmb
+        state: started
+        enabled: yes
+
+    - name: Enable Winbind Service
+      systemd:
+        name: winbind
+        state: started
+        enabled: yes
     # Block Conditionals
   when: winbind_status.rc != 0
 # End block
